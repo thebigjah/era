@@ -185,6 +185,12 @@
   <button id="random-btn">Surprise me</button>
 </div>
 
+<div class="picker" style="font-size:0.85rem;">
+  <label for="birth-input" style="text-transform:none;letter-spacing:0;font-size:0.85rem;color:var(--ink-soft);">Born in...</label>
+  <input type="number" id="birth-input" placeholder="2007" min="1900" max="2026" style="background:var(--panel-2);color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0.75rem;font-family:inherit;width:100px;">
+  <button id="my-year-btn">Year I was 16</button>
+</div>
+
 <div id="content"></div>
 
 <div class="row-actions">
@@ -205,6 +211,36 @@
 'use strict';
 
 const ERAS = [
+  {
+    year: 1945,
+    sub: "The war ends. The world starts over.",
+    headlines: [
+      { t: "Franklin D. Roosevelt dies, Truman becomes president", note: "Apr 12" },
+      { t: "VE Day — Germany surrenders unconditionally", note: "May 8" },
+      { t: "Atomic bombs dropped on Hiroshima and Nagasaki", note: "Aug 6, Aug 9" },
+      { t: "VJ Day — Japan surrenders. World War II ends.", note: "Aug 15" },
+      { t: "United Nations charter signed in San Francisco", note: "Jun 26" },
+    ],
+    music: [
+      { t: "Till the End of Time — Perry Como", note: "#1 of year" },
+      { t: "Sentimental Journey — Les Brown w/ Doris Day" },
+      { t: "Rum and Coca-Cola — The Andrews Sisters" },
+    ],
+    film: [
+      { t: "The Lost Weekend", note: "Best Picture" },
+      { t: "Mildred Pierce", note: "Joan Crawford comeback" },
+      { t: "Anchors Aweigh", note: "Sinatra + Kelly + a dancing cartoon mouse" },
+    ],
+    tech: [
+      { t: "ENIAC, the first general-purpose electronic computer, is being built (operational Feb 1946)" },
+      { t: "Microwave oven invented after Percy Spencer melts a chocolate bar near a magnetron" },
+    ],
+    culture: [
+      { t: "Levittown — first mass-produced American suburb — begins planning" },
+      { t: "Boomer generation begins (post-war baby boom kicks off mid-year)" },
+    ],
+    quote: "\"We've got peace.\" — heard in Times Square, August 15, said about ten million times",
+  },
   {
     year: 1955,
     sub: "America at the height of post-war prosperity",
@@ -326,6 +362,38 @@ const ERAS = [
     quote: "\"In a galaxy far, far away...\" — every kid in America starts a Saturday with the same sentence",
   },
   {
+    year: 1975,
+    sub: "Vietnam ends, the malaise begins, Saturday Night Live arrives",
+    headlines: [
+      { t: "Saigon falls. U.S. evacuates by helicopter from the embassy roof.", note: "Apr 30" },
+      { t: "Microsoft founded by Bill Gates and Paul Allen", note: "Apr 4" },
+      { t: "Jaws becomes the first summer blockbuster", note: "Jun 20" },
+      { t: "New York City nearly bankrupt — 'FORD TO CITY: DROP DEAD'" },
+      { t: "Saturday Night Live debuts on NBC", note: "Oct 11" },
+    ],
+    music: [
+      { t: "Love Will Keep Us Together — Captain & Tennille", note: "#1 of year" },
+      { t: "Bohemian Rhapsody released — Queen", note: "single in UK Oct 31" },
+      { t: "Born to Run — Bruce Springsteen" },
+      { t: "Wish You Were Here — Pink Floyd" },
+    ],
+    film: [
+      { t: "Jaws" },
+      { t: "One Flew Over the Cuckoo's Nest", note: "Best Picture" },
+      { t: "Dog Day Afternoon" },
+      { t: "Monty Python and the Holy Grail" },
+    ],
+    tech: [
+      { t: "Altair 8800 — first practical personal computer kit — covers Popular Electronics in January" },
+      { t: "First video cassette recorders (Betamax) ship in Japan" },
+    ],
+    culture: [
+      { t: "Disco overtakes radio" },
+      { t: "Patty Hearst captured by FBI in San Francisco" },
+    ],
+    quote: "\"Live from New York, it's Saturday Night!\" — Chevy Chase, Oct 11",
+  },
+  {
     year: 1985,
     sub: "The American suburb's golden hour — neon, MTV, Back to the Future",
     headlines: [
@@ -386,6 +454,38 @@ const ERAS = [
       { t: "Generation X published by Douglas Coupland — names the generation" },
     ],
     quote: "\"Info.cern.ch — the world's first website goes live\" — most people will not hear about this for 4 more years",
+  },
+  {
+    year: 1995,
+    sub: "DVD invented. Netscape IPOs. The internet is now a thing.",
+    headlines: [
+      { t: "Oklahoma City bombing kills 168", note: "Apr 19" },
+      { t: "O.J. Simpson acquitted in 'trial of the century'", note: "Oct 3" },
+      { t: "Netscape IPO — the moment the internet becomes a Wall Street story", note: "Aug 9" },
+      { t: "Windows 95 launches with overwhelming hype and a Rolling Stones theme song", note: "Aug 24" },
+      { t: "Dayton Accords signed, ending the Bosnian War" },
+    ],
+    music: [
+      { t: "Gangsta's Paradise — Coolio feat. L.V.", note: "#1 of year" },
+      { t: "Wonderwall — Oasis" },
+      { t: "Waterfalls — TLC" },
+      { t: "Kiss From a Rose — Seal (from Batman Forever)" },
+    ],
+    film: [
+      { t: "Toy Story", note: "First fully computer-animated feature film" },
+      { t: "Braveheart", note: "Best Picture" },
+      { t: "Apollo 13" },
+      { t: "Se7en" },
+    ],
+    tech: [
+      { t: "Windows 95, Internet Explorer 1, JavaScript, eBay, Amazon book sales, DVD spec — all 1995" },
+      { t: "PlayStation launches in U.S. (Sep 9)" },
+    ],
+    culture: [
+      { t: "Friends and Seinfeld are NBC's must-see-TV centerpiece" },
+      { t: "'You've got mail!' — AOL is now in 5M households" },
+    ],
+    quote: "\"This is the internet. We're going to do this whether you want us to or not.\" — Marc Andreessen, in spirit",
   },
   {
     year: 1998,
@@ -488,6 +588,39 @@ const ERAS = [
     quote: "\"And boy, have we patented it.\" — Steve Jobs, Jan 9, introducing the iPhone",
   },
   {
+    year: 2010,
+    sub: "iPad launches. Instagram launches. Streaming kills cable in slow motion.",
+    headlines: [
+      { t: "Apple unveils the iPad", note: "Jan 27" },
+      { t: "Instagram launches on iOS", note: "Oct 6" },
+      { t: "Deepwater Horizon oil spill — 87-day disaster in the Gulf", note: "Apr 20 - Jul 15" },
+      { t: "Chilean miners rescued after 69 days underground", note: "Oct 13" },
+      { t: "WikiLeaks publishes 250,000+ U.S. diplomatic cables" },
+    ],
+    music: [
+      { t: "Tik Tok — Kesha", note: "#1 of year, the song not the app" },
+      { t: "Bad Romance — Lady Gaga" },
+      { t: "Empire State of Mind — Jay-Z & Alicia Keys (still on heavy rotation)" },
+      { t: "Love the Way You Lie — Eminem feat. Rihanna" },
+    ],
+    film: [
+      { t: "The Social Network", note: "Aaron Sorkin's Facebook origin movie" },
+      { t: "The King's Speech", note: "Best Picture" },
+      { t: "Inception" },
+      { t: "Toy Story 3" },
+    ],
+    tech: [
+      { t: "iPad launches" },
+      { t: "Instagram, Pinterest, Snapchat (2011), all queued up in this window" },
+      { t: "4G LTE networks begin commercial rollout in U.S." },
+    ],
+    culture: [
+      { t: "The Hunger Games (book) sells across high schools" },
+      { t: "Tea Party midterm wave reshapes Congress" },
+    ],
+    quote: "\"There's an app for that.\" — Apple's tagline for the year",
+  },
+  {
     year: 2012,
     sub: "Peak Facebook. Pre-political-meltdown. The last shared internet.",
     headlines: [
@@ -552,6 +685,39 @@ const ERAS = [
       { t: "Many friendships strained by election; group chats fracture" },
     ],
     quote: "\"What just happened?\" — every media person, Nov 9 morning",
+  },
+  {
+    year: 2017,
+    sub: "Trump's first year. #MeToo. Crypto's first mainstream moment.",
+    headlines: [
+      { t: "Donald Trump inaugurated", note: "Jan 20" },
+      { t: "#MeToo movement explodes after Weinstein revelations", note: "Oct" },
+      { t: "Bitcoin hits $20,000 briefly, then collapses", note: "Dec" },
+      { t: "Hurricane Harvey + Irma + Maria — record back-to-back season" },
+      { t: "Las Vegas shooting — 60 killed at country music festival", note: "Oct 1" },
+    ],
+    music: [
+      { t: "Shape of You — Ed Sheeran", note: "#1 of year" },
+      { t: "Despacito — Luis Fonsi feat. Daddy Yankee + Justin Bieber" },
+      { t: "HUMBLE. — Kendrick Lamar" },
+      { t: "Old Town Road on the horizon..." },
+    ],
+    film: [
+      { t: "Get Out", note: "Jordan Peele directorial debut" },
+      { t: "The Shape of Water", note: "Best Picture" },
+      { t: "Dunkirk" },
+      { t: "Lady Bird" },
+    ],
+    tech: [
+      { t: "iPhone X removes the home button, introduces Face ID" },
+      { t: "Bitcoin briefly the cocktail-party topic" },
+      { t: "Net neutrality repealed by FCC (Dec)" },
+    ],
+    culture: [
+      { t: "Stranger Things season 2 lands. Black Mirror is the show people quote." },
+      { t: "Fidget spinners. Everywhere." },
+    ],
+    quote: "\"That moment when the system glitched at the Oscars.\" — Moonlight/La La Land mixup, the meta-cultural moment of the year",
   },
   {
     year: 2020,
@@ -691,6 +857,23 @@ function checkHash() {
   }
 }
 
+function jumpToYearIWas16() {
+  const birth = parseInt(document.getElementById('birth-input').value, 10);
+  if (isNaN(birth) || birth < 1900 || birth > 2026) {
+    alert('Enter your birth year.');
+    return;
+  }
+  const targetYear = birth + 16;
+  // Find the closest year in our list
+  const closest = ERAS.reduce((c, e) => Math.abs(e.year - targetYear) < Math.abs(c.year - targetYear) ? e : c);
+  jumpToYear(closest.year);
+  if (closest.year !== targetYear) {
+    setTimeout(() => alert("Closest year we have: " + closest.year + " (you were " + (closest.year - birth) + " then)"), 100);
+  }
+}
+
+document.getElementById('my-year-btn').addEventListener('click', jumpToYearIWas16);
+document.getElementById('birth-input').addEventListener('keypress', e => { if (e.key === 'Enter') jumpToYearIWas16(); });
 document.getElementById('go-btn').addEventListener('click', () => jumpToYear(yearSelect.value));
 document.getElementById('random-btn').addEventListener('click', randomEra);
 document.getElementById('share-btn').addEventListener('click', shareYear);
