@@ -309,6 +309,8 @@
     margin-top: 14px;
     opacity: 0.7;
   }
+  select, #year-select { max-width: 100%; }
+  .quote-note { margin-top: 8px; font-size: 12px; opacity: .7; }
 </style>
 <link rel="canonical" href="https://thebigjah.github.io/era/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Era","url":"https://thebigjah.github.io/era/","description":"Pick or roll a year. See it as the people who lived it did \u2014 top headlines, music, film, tech, cultural moment. No 'looking back from now.'","applicationCategory":"UtilitiesApplication","operatingSystem":"Any, runs in a web browser","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://purcellventures.co/#founder","name":"Elijah Purcell","url":"https://purcellventures.co/who"},"publisher":{"@type":"Organization","@id":"https://purcellventures.co/#organization","name":"Purcell Ventures LLC","url":"https://purcellventures.co"}}</script>
@@ -641,7 +643,7 @@ const ERAS = [
       { t: "Friends and Seinfeld are NBC's must-see-TV centerpiece" },
       { t: "'You've got mail!', AOL is now in 5M households" },
     ],
-    quote: "\"This is the internet. We're going to do this whether you want us to or not.\", Marc Andreessen, in spirit",
+    quote: "\"This is the internet. We're going to do this whether you want us to or not.\", the mood of the dot-com rush",
   },
   {
     year: 1998,
@@ -707,7 +709,7 @@ const ERAS = [
       { t: "Pre-9/11: Friends, Survivor, Limp Bizkit" },
       { t: "Post-9/11: 'United We Stand' signs in every yard, flags on every porch" },
     ],
-    quote: "\"In the air, on the ground, and where we live and play, life will never be the same.\", anonymous newspaper editorial, Sep 12",
+    quote: "\"Life will never be the same.\", the feeling of September 12",
   },
   {
     year: 2007,
@@ -942,7 +944,7 @@ function renderEra(idx) {
       ${renderCard('At the movies', era.film)}
       ${renderCard('Tech of the moment', era.tech)}
       ${renderCard('Cultural air', era.culture)}
-      ${era.quote ? `<div class="card"><div class="head">A voice from the year</div><div class="quote">${escapeHtml(era.quote)}</div></div>` : ''}
+      ${era.quote ? `<div class="card"><div class="head">The line of the year</div><div class="quote">${escapeHtml(era.quote)}</div><div class="quote-note">Lines with a name and date are real quotes. The rest are the mood of the year in one sentence.</div></div>` : ''}
     </div>
   `;
   content.innerHTML = html;
